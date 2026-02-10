@@ -1336,7 +1336,26 @@
 				transform: rotate(359deg,0deg,0deg);
 			}
 		}
-	</style><style type="text/css">[mt_node^=trans]{display: none !important;}</style><meta name="referrer" content="no-referrer-when-downgrade"></head>
+	</style><style type="text/css">[mt_node^=trans]{display: none !important;}</style><meta name="referrer" content="no-referrer-when-downgrade">
+    <script>
+    // 检测是否在移动设备上，但阻止跳转
+    (function() {
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile && window.location.pathname.includes('/Index/')) {
+        console.log("移动设备访问，但已阻止跳转到/mobile/");
+        
+        // 监听可能的跳转尝试
+        window.addEventListener('beforeunload', function(e) {
+          if (window.location.href.indexOf('/mobile/') !== -1) {
+            e.preventDefault();
+            return "阻止跳转到移动版";
+          }
+        });
+      }
+    })();
+  </script>
+  </head>
 <body>
   <div class="header">  <div class="menu_bg" style="opacity: 0;"></div>
   <div class="menu" style="margin-top: 20px;">
